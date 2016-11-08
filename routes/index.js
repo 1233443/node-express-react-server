@@ -19,17 +19,15 @@ var format = path.format({
 	name: "file"
 });
 var fs = require("fs");
+
 router.get('/', function(req, res, next) {
-	res.send({
-		status: 0
-	});
-	
+	res.render("home");
 	//删除
 	/*const id = 1
 	db.user.findById(id).then(item => {
 		item.destroy();
 	});*/
-	
+
 	//更改
 	/*var id = 1;
 	db.user.findById(id).then(item => {

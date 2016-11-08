@@ -4,7 +4,7 @@
   "description": " node-express-text",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "nodemon  app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -32,10 +32,12 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
+    "express-handlebars": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-livereload": "^3.8.1",
     "gulp-nodemon": "^2.2.1",
     "gulp-plumber": "^1.1.0",
-    "gulp-stylus": "^2.6.0"
+    "gulp-stylus": "^2.6.0",
+    "nodemon": "^1.11.0"
   }
 }
