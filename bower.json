@@ -1,0 +1,21 @@
+{
+  "name": "dfc",
+  "description": "node-express-text",
+  "main": "app.js",
+  "authors": [
+    "dfc <652988976@qq.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.1.1"
+  }
+}

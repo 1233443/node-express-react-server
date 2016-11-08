@@ -1,1 +1,1 @@
-# wztj-admin-postgresql
+# wztj-admin

@@ -1,0 +1,13 @@
+extends ../layout
+
+block content
+	.container
+		.row
+			form(action="/upload" enctype="multipart/form-data" method="post")
+				input(type="text" name="title")
+				input(type="file" name="upload" multiple="multiple")
+				input(type="submit" value="upload")
+								
+									
+							
+	
