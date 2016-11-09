@@ -1,6 +1,9 @@
 module.exports = function(sequelize, DataTypes) {
-	var User = sequelize.define('user', {
-		current_user: DataTypes.TEXT,
+	var Package = sequelize.define('package', {
+		title: DataTypes.TEXT,
+		description:DataTypes.TEXT,
+		publisher:DataTypes.INTEGER,
+		status:DataTypes.INTEGER
 	}, {
 		classMethods: {
 			associate: function(models) {
@@ -9,5 +12,5 @@ module.exports = function(sequelize, DataTypes) {
 			}
 		}
 	});
-	return User;
+	return Package;
 };

@@ -1,6 +1,8 @@
 module.exports = function(sequelize, DataTypes) {
-	var User = sequelize.define('user', {
-		current_user: DataTypes.TEXT,
+	var Comment = sequelize.define('content', {
+		publisher: DataTypes.INTEGER,
+		package_id:DataTypes.INTEGER,
+		content:DataTypes.TEXT,
 	}, {
 		classMethods: {
 			associate: function(models) {
@@ -9,5 +11,5 @@ module.exports = function(sequelize, DataTypes) {
 			}
 		}
 	});
-	return User;
+	return Comment;
 };

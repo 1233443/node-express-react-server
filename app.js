@@ -33,6 +33,12 @@ const topicAdd = require("./routes/topic/add");
 const topicUpdate = require("./routes/topic/update");
 const topicDelete = require("./routes/topic/delete");
 
+//dog
+
+const dogList = require("./routes/dog/list");
+const dogAdd = require("./routes/dog/add");
+const dogUpdate = require("./routes/dog/update");
+const dogDelete = require("./routes/dog/delete");
 
 
 //路由
@@ -43,10 +49,11 @@ app.post("/topic/add", topicAdd);
 app.put("/topic/update/:id", topicUpdate);
 app.delete("/topic/delete/:id", topicDelete);
 
-app.post("/gain",function(req,res){
-	res.send("aa");
-})
 
+app.get("/dog/list", dogList);
+app.post("/dog/add", dogAdd);
+app.put("/dog/update/:id", dogUpdate);
+app.delete("/dog/delete/:id", dogDelete);
 
 db.sequelize
 	.sync()
