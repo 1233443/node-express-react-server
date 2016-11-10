@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-	var Comment = sequelize.define('content', {
+	var Comment = sequelize.define('comment', {
 		publisher: DataTypes.INTEGER,
 		package_id:DataTypes.INTEGER,
 		content:DataTypes.TEXT,

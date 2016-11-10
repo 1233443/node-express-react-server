@@ -19,6 +19,7 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars');
 
 app.use(express.static(path.join(__dirname, 'bower_components')));
+
 app.use(bodyParser.json({
 	limit: '1mb'
 })); //body-parser 解析json格式数据
@@ -40,6 +41,10 @@ const dogAdd = require("./routes/dog/add");
 const dogUpdate = require("./routes/dog/update");
 const dogDelete = require("./routes/dog/delete");
 
+//user
+
+const login = require("./routes/user/login");
+const register = require("./routes/user/register");
 
 //路由
 
@@ -54,6 +59,11 @@ app.get("/dog/list", dogList);
 app.post("/dog/add", dogAdd);
 app.put("/dog/update/:id", dogUpdate);
 app.delete("/dog/delete/:id", dogDelete);
+
+
+app.get("/user/login", login);
+app.get("/user/register", register);
+
 
 db.sequelize
 	.sync()

@@ -2,18 +2,15 @@ var express = require('express');
 var router = express.Router();
 var db = require('../../models');
 
-router.get('/dog/list', function(req, res, next) {
-	db.topic.findAll({
+router.get('/user/register', function(req, res, next) {
+	/*db.topic.findAll({
 		order: '"updatedAt" DESC'
 	}).then(function(data) {
 		res.send({
 			status: 0,
-			result: [{
-				"x":1,
-				"y":2
-			}]
+			result: data
 		});
-	});
+	});*/
 });
 
 module.exports = router;
