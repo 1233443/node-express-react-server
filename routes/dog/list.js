@@ -3,7 +3,8 @@ var router = express.Router();
 var db = require('../../models');
 
 router.get('/dog/list', function(req, res, next) {
-	db.topic.findAll({
+	res.render("list");
+	/*db.topic.findAll({
 		order: '"updatedAt" DESC'
 	}).then(function(data) {
 		res.send({
@@ -13,7 +14,7 @@ router.get('/dog/list', function(req, res, next) {
 				"y":2
 			}]
 		});
-	});
+	});*/
 });
 
 module.exports = router;
