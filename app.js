@@ -42,6 +42,7 @@ const topicDelete = require("./routes/topic/delete");
 
 //dog
 
+const zipAdd = require("./routes/dog/zipAdd");
 const dogList = require("./routes/dog/list");
 const dogAdd = require("./routes/dog/add");
 const dogUpdate = require("./routes/dog/update");
@@ -49,7 +50,8 @@ const dogDelete = require("./routes/dog/delete");
 
 //user
 
-const login = require("./routes/user/login");
+const loginIn = require("./routes/user/loginIn");
+const loginOut = require("./routes/user/loginOut");
 const register = require("./routes/user/register");
 
 //路由
@@ -63,13 +65,15 @@ app.delete("/topic/delete/:id", topicDelete);
 
 app.get("/dog/list", dogList);
 app.post("/dog/add", dogAdd);
+app.post("/zip/add", zipAdd);
 app.put("/dog/update/:id", dogUpdate);
-app.delete("/dog/delete/:id", dogDelete);
+app.post("/dog/delete/:id", dogDelete);
 
 
-app.get("/user/login", login);
-app.get("/user/register", register);
 
+app.post("/user/register", register);
+app.post("/user/loginIn", loginIn);
+app.get("/user/loginOut", loginOut);
 
 db.sequelize
 	.sync()

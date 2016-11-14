@@ -2,6 +2,7 @@ module.exports = function(sequelize, DataTypes) {
 	var Package = sequelize.define('package', {
 		title: DataTypes.TEXT,
 		description:DataTypes.TEXT,
+		url:DataTypes.TEXT,
 		publisher:DataTypes.INTEGER,
 		status:DataTypes.INTEGER
 	}, {
