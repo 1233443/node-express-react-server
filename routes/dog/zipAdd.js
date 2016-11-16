@@ -6,9 +6,7 @@ var unzip=require("unzip");
 var db = require('../../models');
 var multiparty = require('multiparty');
 
-router.post('/zip/add', function(req, res, next) {
-	console.log("aa");
-	console.log("bb");
+router.post('/admin/zip/add', function(req, res, next) {
 	var form = new multiparty.Form({uploadDir: './uploads'});
 	form.parse(req, function(err, fields, files) {
 		var filesTmp = JSON.stringify(files);

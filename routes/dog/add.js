@@ -3,7 +3,7 @@ var router = express.Router();
 var path = require('path');
 var db = require('../../models');
 
-router.post('/dog/add', function(req, res, next) {
+router.post('/admin/dog/add', function(req, res, next) {
 	/*db.package.findAll({
 		where: {
 			title: req.body.zipName

@@ -45,8 +45,9 @@ const topicDelete = require("./routes/topic/delete");
 const zipAdd = require("./routes/dog/zipAdd");
 const dogList = require("./routes/dog/list");
 const dogAdd = require("./routes/dog/add");
-const dogUpdate = require("./routes/dog/update");
+const dogUpdata = require("./routes/dog/updata");
 const dogDelete = require("./routes/dog/delete");
+const dogDetail = require("./routes/dog/detail");
 
 //user
 
@@ -63,17 +64,22 @@ app.put("/topic/update/:id", topicUpdate);
 app.delete("/topic/delete/:id", topicDelete);
 
 
-app.get("/dog/list", dogList);
-app.post("/dog/add", dogAdd);
-app.post("/zip/add", zipAdd);
-app.put("/dog/update/:id", dogUpdate);
-app.post("/dog/delete/:id", dogDelete);
+//admin 后台路由接口
+app.get("/admin/dog/list", dogList);
+app.post("/admin/dog/add", dogAdd);
+app.post("/admin/zip/add", zipAdd);
+app.post("/admin/dog/updata", dogUpdata);
+app.post("/admin/dog/delete/:id", dogDelete);
+app.post("/admin/dog/detail", dogDetail);
+
+app.post("/admin/user/register", register);
+app.post("/admin/user/loginIn", loginIn);
+app.get("/admin/user/loginOut", loginOut);
 
 
+//web路由接口
 
-app.post("/user/register", register);
-app.post("/user/loginIn", loginIn);
-app.get("/user/loginOut", loginOut);
+
 
 db.sequelize
 	.sync()

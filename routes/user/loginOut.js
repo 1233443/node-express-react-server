@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var db = require('../../models');
 
-router.get('/user/loginOut', function(req, res, next) {
+router.get('/admin/user/loginOut', function(req, res, next) {
 	/*db.topic.findAll({
 		order: '"updatedAt" DESC'
 	}).then(function(data) {

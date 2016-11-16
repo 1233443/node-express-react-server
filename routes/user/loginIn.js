@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var db = require('../../models');
 
-router.post('/user/loginIn', function(req, res, next) {
+router.post('/admin/user/loginIn', function(req, res, next) {
 	db.user.findAll({
 		where: {
 			username: req.body.username,
