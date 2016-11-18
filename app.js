@@ -8,14 +8,13 @@ var formidable = require('formidable');
 var moment = require("moment");
 var busboy = require('connect-busboy');
 var multiparty = require('multiparty');
+var cookieParser = require("cookie-parser");
+
 var PORT = process.env.PORT || 3003; //process是个全局变量bodyParser
 var app = express(); //启动一个外围服务器
 app.locals.moment = moment;
 
-
-//app.use(busboy());
 app.use(bodyParser());
-//app.use(bodyParser({uploadDir:'./uploads'}));
 
 var db = require('./models');
 app.engine('handlebars', exphbs({
@@ -25,6 +24,9 @@ app.set('view engine', 'handlebars');
 
 app.use(express.static(path.join(__dirname, 'bower_components')));
 
+app.use(cookieParser("123456"));
+
+
 /*app.use(bodyParser.json({
 	limit: '1mb'
 })); //body-parser 解析json格式数据
@@ -33,6 +35,16 @@ app.use(bodyParser.urlencoded({ //此项必须在 bodyParser.json 下面,为参�
 	extended: true
 }));*/
 
+app.use(function(req,res,next){
+	console.log(req.signedCookies);
+	if(!req.signedCookies){
+		res.send({
+			status:-1
+		});
+	}else{
+		next();
+	}
+});
 /*引入路由*/
 const index = require("./routes/index");
 const topicList = require("./routes/topic/list");
@@ -63,7 +75,6 @@ app.post("/topic/add", topicAdd);
 app.put("/topic/update/:id", topicUpdate);
 app.delete("/topic/delete/:id", topicDelete);
 
-
 //admin 后台路由接口
 app.get("/admin/dog/list", dogList);
 app.post("/admin/dog/add", dogAdd);
@@ -76,10 +87,7 @@ app.post("/admin/user/register", register);
 app.post("/admin/user/loginIn", loginIn);
 app.get("/admin/user/loginOut", loginOut);
 
-
 //web路由接口
-
-
 
 db.sequelize
 	.sync()

@@ -1,4 +1,5 @@
 var express = require('express');
+var fs = require("fs");
 var router = express.Router();
 var db = require('../models');
 
@@ -18,9 +19,10 @@ var format = path.format({
 	ext: ".txt",
 	name: "file"
 });
-var fs = require("fs");
 
 router.get('/', function(req, res, next) {
+	//设置签名cookie,并且只httpOnly只能由服务端修改
+
 	res.render("home");
 	//删除
 	/*const id = 1
