@@ -24,7 +24,7 @@ app.set('view engine', 'handlebars');
 
 app.use(express.static(path.join(__dirname, 'bower_components')));
 
-app.use(cookieParser("123456"));
+app.use(cookieParser());
 
 
 /*app.use(bodyParser.json({
