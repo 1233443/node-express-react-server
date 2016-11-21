@@ -10,7 +10,7 @@ router.post('/admin/user/register', function(req, res, next) {
         }
    	}).then(function(data){
     	if(data[0]){
-    		res.send({status:-1,desc:"用户已经存在,不能重复注册"});
+    		res.send({status:-1,desc:"用户已经存在,请直接登录，或者换个名字注册"});
     	}else{
     		if(req.body.username=="administrators"){
     			roleId=1;
