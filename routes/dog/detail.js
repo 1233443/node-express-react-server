@@ -1,12 +1,15 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../../models');
-router.post('/admin/dog/detail', function(req, res, next) {
+router.post('/admin/dog/detail/:id', function(req, res, next) {
 	db.package.findAll({
 		where: {
-			id: req.body.id
+			id: req.params.id
 		}
-	}).then(function(data) {
+	}).then(function(data) { 
+		console.log(data);
+		console.log("dfc");
+		     
 		if(data) {
 			res.send({
 				status: 0,

@@ -81,7 +81,7 @@ app.post("/admin/dog/add", dogAdd);
 app.post("/admin/zip/add", zipAdd);
 app.post("/admin/dog/updata", dogUpdata);
 app.post("/admin/dog/delete/:id", dogDelete);
-app.post("/admin/dog/detail", dogDetail);
+app.post("/admin/dog/detail/:id", dogDetail);
 
 app.post("/admin/user/register", register);
 app.post("/admin/user/loginIn", loginIn);
