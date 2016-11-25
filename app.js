@@ -23,9 +23,10 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars');
 
 app.use(express.static(path.join(__dirname, 'bower_components')));
+// 使用静态资源
 
+app.use(express.static(__dirname + '/'));
 app.use(cookieParser());
-
 
 /*app.use(bodyParser.json({
 	limit: '1mb'
@@ -35,16 +36,17 @@ app.use(bodyParser.urlencoded({ //此项必须在 bodyParser.json 下面,为参�
 	extended: true
 }));*/
 
-app.use(function(req,res,next){
-	console.log(req.signedCookies);
-	if(!req.signedCookies){
+/*app.use(function(req, res, next) {
+	console.log("公用的中间件");
+	if(!req.cookies) {
 		res.send({
-			status:-1
+			status: -1
 		});
-	}else{
+	} else {
 		next();
 	}
-});
+});*/
+
 /*引入路由*/
 const index = require("./routes/index");
 const topicList = require("./routes/topic/list");
@@ -52,7 +54,7 @@ const topicAdd = require("./routes/topic/add");
 const topicUpdate = require("./routes/topic/update");
 const topicDelete = require("./routes/topic/delete");
 
-//dog
+//admin dog
 
 const zipAdd = require("./routes/dog/zipAdd");
 const dogList = require("./routes/dog/list");
@@ -60,6 +62,12 @@ const dogAdd = require("./routes/dog/add");
 const dogUpdata = require("./routes/dog/updata");
 const dogDelete = require("./routes/dog/delete");
 const dogDetail = require("./routes/dog/detail");
+const dogExamine = require("./routes/dog/examine");
+const wasExamine = require("./routes/dog/wasExamine");
+
+//admin web
+const webList = require("./routes/web/list");
+const comment = require("./routes/web/comment");
 
 //user
 
@@ -68,27 +76,50 @@ const loginOut = require("./routes/user/loginOut");
 const register = require("./routes/user/register");
 
 //路由
+var cb0 = function(req, res, next) {
+		/*if(!req.cookies) {
+			res.send({
+				status: -1
+			});
+		} else {
+			next();
+		}*/
+		next();
+	}
+	/*app.get("/topic/list",,topicList);
+	app.post("/topic/add", topicAdd);
+	app.put("/topic/update/:id", topicUpdate);
+	app.delete("/topic/delete/:id", topicDelete);*/
 
-app.get("/", index);
-app.get("/topic/list", topicList);
-app.post("/topic/add", topicAdd);
-app.put("/topic/update/:id", topicUpdate);
-app.delete("/topic/delete/:id", topicDelete);
+app.get("/", cb0, index);
 
 //admin 后台路由接口
-app.get("/admin/dog/list", dogList);
-app.post("/admin/dog/add", dogAdd);
-app.post("/admin/zip/add", zipAdd);
-app.post("/admin/dog/updata", dogUpdata);
-app.post("/admin/dog/delete/:id", dogDelete);
-app.post("/admin/dog/detail/:id", dogDetail);
+app.get("/admin/dog/list", cb0, dogList);
+app.post("/admin/dog/add", cb0, dogAdd);
+
+app.post("/admin/zip/add", cb0, zipAdd);
+app.post("/admin/dog/updata", cb0, dogUpdata);
+app.post("/admin/dog/delete/:id", cb0, dogDelete);
+app.post("/admin/dog/detail/:id", cb0, dogDetail);
+//审核
+app.post("/admin/dog/examine/:id", cb0, dogExamine);
+app.post("/admin/dog/wasExamine/:id", cb0, wasExamine);
 
 app.post("/admin/user/register", register);
 app.post("/admin/user/loginIn", loginIn);
 app.get("/admin/user/loginOut", loginOut);
 
-//web路由接口
+//web 前台接口
 
+app.get("/web/dog/list", webList);
+app.get("/web/dog/comment", comment);
+
+app.use(function(err, req, res, next) {
+	console.error(err.stack);
+	res.status(500).send('Something broke!');
+});
+
+//web路由接口
 db.sequelize
 	.sync()
 	.then(function() {

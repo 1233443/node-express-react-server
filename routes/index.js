@@ -21,8 +21,6 @@ var format = path.format({
 });
 
 router.get('/', function(req, res, next) {
-	//设置签名cookie,并且只httpOnly只能由服务端修改
-
 	res.render("home");
 	//删除
 	/*const id = 1

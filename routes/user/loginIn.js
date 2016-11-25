@@ -10,9 +10,15 @@ router.post('/admin/user/loginIn', function(req, res, next) {
 		}
 	}).then(function(data) {
 		if(data.length > 0) {
+			if(data[0].dataValues.username != "admin") {
+				res.cookie('user_limit', 1);
+			} else {
+				res.cookie('user_limit', 2);
+			}
 			res.send({
 				status: 0,
-				desc: "登录成功"
+				desc: "登录成功",
+				result: data[0]
 			});
 		} else {
 			res.send({

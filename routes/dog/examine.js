@@ -2,20 +2,21 @@ var express = require('express');
 var router = express.Router();
 var db = require('../../models');
 
-router.post('/admin/dog/updata', function(req, res, next) {
-	var id = req.body.id;
-
+router.post('/admin/dog/examine/:id', function(req, res, next) {
+	var id = req.params.id;
 	db.package.find({
 		where: {
 			id: id
 		}
 	}).then(function(result) {
 		if(result) {
+			var status = result.dataValues.status;
+			status = status == 1 ? "-1" : "1";
+			console.log(status);
 			result.updateAttributes({
-				title: req.body.zipName,
-				description: req.body.zipDesc,
-				url: req.body.zipPackage
+				status: status
 			}).then(function(data) {
+
 				res.send({
 					status: 0,
 					desc: "修改成功"
