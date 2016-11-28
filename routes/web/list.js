@@ -4,16 +4,15 @@ var db = require('../../models');
 
 router.get('/web/dog/list', function(req, res, next) {
 	db.package.findAll({
-		order: '"updatedAt" DESC'
+		'where': {
+			"status": 1
+		}
 	}).then(function(data) {
-		console.log(data);
 		res.send({
 			status: 0,
 			result: data
 		});
 	});
 });
-
-
 
 module.exports = router;

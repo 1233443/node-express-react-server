@@ -19,7 +19,6 @@ var format = path.format({
 	ext: ".txt",
 	name: "file"
 });
-
 router.get('/', function(req, res, next) {
 	res.render("home");
 	//删除

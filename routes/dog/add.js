@@ -19,14 +19,12 @@ router.post('/admin/dog/add', function(req, res, next) {
 			
 		}
 	});*/
-
 	db.package.create({
 		title: req.body.zipName,
 		description: req.body.zipDesc,
 		url: req.body.zipPackage,
 		status: -1
 	});
-
 	res.send({
 		status: 0,
 		desc: "添加成功"

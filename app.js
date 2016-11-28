@@ -26,6 +26,7 @@ app.use(express.static(path.join(__dirname, 'bower_components')));
 // 使用静态资源
 
 app.use(express.static(__dirname + '/'));
+
 app.use(cookieParser());
 
 /*app.use(bodyParser.json({
@@ -67,30 +68,31 @@ const wasExamine = require("./routes/dog/wasExamine");
 
 //admin web
 const webList = require("./routes/web/list");
-const comment = require("./routes/web/comment");
+const commentZip = require("./routes/web/comment");
 
 //user
-
 const loginIn = require("./routes/user/loginIn");
 const loginOut = require("./routes/user/loginOut");
 const register = require("./routes/user/register");
-
+/*app.get("/topic/list",,topicList);
+app.post("/topic/add", topicAdd);
+app.put("/topic/update/:id", topicUpdate);
+app.delete("/topic/delete/:id", topicDelete);*/
 //路由
-var cb0 = function(req, res, next) {
-		/*if(!req.cookies) {
-			res.send({
-				status: -1
-			});
-		} else {
-			next();
-		}*/
-		next();
-	}
-	/*app.get("/topic/list",,topicList);
-	app.post("/topic/add", topicAdd);
-	app.put("/topic/update/:id", topicUpdate);
-	app.delete("/topic/delete/:id", topicDelete);*/
 
+var cb0 = function(req, res, next) {
+	if(req.cookies.user_limit && req.cookies.user_limit == 1) {
+		console.log("普通用户");
+		next();
+	} else if(req.cookies.user_limit && req.cookies.user_limit == 2) {
+		console.log("管理员");
+		next();
+	} else {
+		res.send({
+			status: -1
+		});
+	}
+}
 app.get("/", cb0, index);
 
 //admin 后台路由接口
@@ -112,7 +114,7 @@ app.get("/admin/user/loginOut", loginOut);
 //web 前台接口
 
 app.get("/web/dog/list", webList);
-app.get("/web/dog/comment", comment);
+app.get("/web/dog/comment", commentZip);
 
 app.use(function(err, req, res, next) {
 	console.error(err.stack);
