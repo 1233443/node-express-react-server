@@ -81,7 +81,7 @@ app.delete("/topic/delete/:id", topicDelete);*/
 //路由
 
 var cb0 = function(req, res, next) {
-	if(req.cookies.user_limit && req.cookies.user_limit == 1) {
+	/*if(req.cookies.user_limit && req.cookies.user_limit == 1) {
 		console.log("普通用户");
 		next();
 	} else if(req.cookies.user_limit && req.cookies.user_limit == 2) {
@@ -91,7 +91,8 @@ var cb0 = function(req, res, next) {
 		res.send({
 			status: -1
 		});
-	}
+	}*/
+	next();
 }
 app.get("/", cb0, index);
 
